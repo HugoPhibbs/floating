@@ -9,8 +9,23 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
+def binary_to_decimal(binary):
+    binary = ''.join(reversed(binary))
+    decimal = 0
+    for i in range(0, len(binary)):
+        decimal += int(binary[i])*2**i
+    print("The decimal value is:", decimal)
+
+
+
+def ibm_single_to_single():
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    binary_to_decimal("11101101010000000000000")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+
+
