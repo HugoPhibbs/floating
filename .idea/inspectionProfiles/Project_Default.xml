@@ -1,0 +1,51 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="3">
+            <item index="0" class="java.lang.String" itemvalue="pandas" />
+            <item index="1" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="2" class="java.lang.String" itemvalue="numpy" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="__directions" />
+          <option value="next" />
+          <option value="curr_position" />
+          <option value="str.__or__" />
+          <option value="src.mid_level.move.Move._Move__reverse" />
+          <option value="src.mid_level.move.Move._Move__is_friendly_blocked" />
+          <option value="src.mid_level.move.Move._Move__dest_is_friendly_blocked" />
+          <option value="src.mid_level.move.Move._Move__causes_friendly_check" />
+          <option value="Capture" />
+          <option value="src.pieces.piece.Piece.just_double_moved" />
+          <option value="src.mid_level.moves.move.Move.dest_pos" />
+          <option value="src.mid_level.board.Board._Board__coords_in_board" />
+          <option value="src.mid_level.moves.capturemove.CaptureMove._CaptureMove__dest_is_friendly_blocked" />
+          <option value="src.mid_level.board.Board._Board__coords_are_coords" />
+          <option value="src.top_level.setup.Setup._Setup__create_players" />
+          <option value="src.top_level.setup.Setup._Setup__colour_for_rows" />
+          <option value="src.top_level.setup.Setup._Setup__create_pieces" />
+          <option value="src.top_level.setup.Setup._Setup__fill_positions" />
+          <option value="src.game_logic.pieces.bishop.Bishop._Bishop__dfs_coords" />
+          <option value="src.game_logic.pieces.bishop.Bishop._Bishop__move_coords" />
+          <option value="src.game_logic.pieces.bishop.Bishop._RangedPiece__move_coords" />
+          <option value="src.game_logic.pieces.piece.Piece.bearings" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
