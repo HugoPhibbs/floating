@@ -1,5 +1,4 @@
 import struct
-import codecs
 
 
 class Convert:
@@ -16,6 +15,8 @@ class Convert:
         """
         file_reader = open(input("Please enter the directory of an input file: "), "rb")
         content = file_reader.read()
+        print(content.decode(encoding="cp1140"))
+
         print(codecs.decode(content, "hex"))
 
     def read_bin_file(self, file_name : str):
@@ -72,7 +73,10 @@ class Convert:
         else:
             return "{:064b}".format(bits)
 
-    def ibm_to_float(binary):
+
+
+
+    def ibm_to_float(self, binary):
         """
         converts the bitpattern given into a float from ibm
         :return: the float version of the binary ibm
@@ -86,7 +90,7 @@ class Convert:
 
         # convert exponant binary to decimal value
         exponant_binary = binary[1:8]
-        exponant = binary_to_decimal(exponant_binary)
+        exponant = Convert().binary_to_decimal(exponant_binary)
 
         # convert binary fraction
         fraction_binary = binary[8:len(binary)]
@@ -97,9 +101,9 @@ class Convert:
         end = hexi[2:len(hexi)]
         fraction_hex = start + middle + end
         fraction = float.fromhex(fraction_hex)
-        ibm_to_float_math_single(sign, exponant, fraction)
+        Convert().ibm_to_float_math_single(sign, exponant, fraction)
 
-    def ibm_to_float_math_single(sign, exponant, fraction):
+    def ibm_to_float_math_single(self ,sign, exponant, fraction):
         """
         takes the decimal exponant and hexidecimal fraction and converts
         to the float.
@@ -110,7 +114,7 @@ class Convert:
         convert = pow(sign, 1) * fraction * pow(16, exponant - 64);
         print(convert)
 
-    def binary_to_decimal(binary):
+    def binary_to_decimal(self, binary):
         """
         converts binary to decimal
         :return: decimal
@@ -127,6 +131,7 @@ class Convert:
         ibm_to_float("00000000000100000000000000000000")
         # dec = float.fromhex("0x0.76A000")
         # binary_to_decimal("1000010")
+
 
 Convert().get_input()
 
