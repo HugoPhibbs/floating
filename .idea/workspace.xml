@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b40bc1fb-4a51-45cb-8bb2-ee453654a8cb" name="Changes" comment="idea files" />
+    <list default="true" id="b40bc1fb-4a51-45cb-8bb2-ee453654a8cb" name="Changes" comment="idea files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/convert.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +63,7 @@
       <recent name="C:\Users\Hugo\Documents\Uni\Cosc\floating\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_floating.TestFloating.test_something">
+  <component name="RunManager" selected="Python.convert">
     <configuration name="convert" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="floating" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,8 +140,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_floating.TestFloating.test_something" />
         <item itemvalue="Python.convert" />
+        <item itemvalue="Python tests.Python tests for test_floating.TestFloating.test_something" />
         <item itemvalue="Python tests.Python tests for test_floating.TestFloating.test_float_to_single" />
         <item itemvalue="Python tests.Python tests for test_floating.TestFloating.test_something" />
       </list>
@@ -161,6 +164,8 @@
       <workItem from="1652665401680" duration="4506000" />
       <workItem from="1652747510519" duration="1405000" />
       <workItem from="1652828886384" duration="308000" />
+      <workItem from="1652837566377" duration="1685000" />
+      <workItem from="1652933446706" duration="1552000" />
     </task>
     <task id="LOCAL-00001" summary="init commmit">
       <created>1652663534595</created>
@@ -209,6 +214,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/floating$main.coverage" NAME="main Coverage Results" MODIFIED="1652654017902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/floating$.coverage" NAME=" Coverage Results" MODIFIED="1652669976840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/floating$convert.coverage" NAME="convert Coverage Results" MODIFIED="1652748721987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/floating$convert.coverage" NAME="convert Coverage Results" MODIFIED="1652934969251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

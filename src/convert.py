@@ -1,4 +1,6 @@
+import codecs
 import struct
+import binascii
 
 
 class Convert:
@@ -15,7 +17,17 @@ class Convert:
         """
         file_reader = open(input("Please enter the directory of an input file: "), "rb")
         content = file_reader.read()
-        print(content.decode(encoding="CP500"))
+        print(codecs.decode(content, "hex"))
+
+    def read_bin_file(self, file_name : str):
+        """
+        Reads an inputted binary file from a user, and returns the content to a user
+
+        :param file_name: str for name of binary file to be opened
+        :return:
+        """
+        return open(file_name, "rb").read()
+
 
     def get_output_format(self):
         """
@@ -61,4 +73,8 @@ class Convert:
         else:
             return "{:064b}".format(bits)
 
-Convert().get_input()
+
+file_reader = open("../test/test_files/testIBMSingle.bin", "rb")
+content = file_reader.read()
+binary_string = binascii.unhexlify(binascii.hexlify(content))
+print(binary_string)
