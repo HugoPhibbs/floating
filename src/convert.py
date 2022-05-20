@@ -1,4 +1,5 @@
 import struct
+import binascii
 
 
 class Convert:
@@ -125,17 +126,121 @@ class Convert:
             decimal += int(binary[i]) * 2 ** i
         return decimal
 
-    if __name__ == '__main__':
-        ibm_to_float("11000010011101101010000000000000")
-        ibm_to_float("01111111111111111111111111111111")
-        ibm_to_float("00000000000100000000000000000000")
-        # dec = float.fromhex("0x0.76A000")
-        # binary_to_decimal("1000010")
 
 
-Convert().get_input()
 
-file_reader = open("../test/test_files/testIBMSingle.bin", "rb")
-content = file_reader.read()
-binary_string = binascii.unhexlify(binascii.hexlify(content))
-print(binary_string)
+    def read_file_and_call_conversion_single(self,file):
+        """
+        reads in the file (this needs to be changed so it takes a file and a type
+        Single or double).
+        the way we read in removes the leading zero as it thinks its padding, so
+        i append that if length 31 or 63
+        need to adjust this method so it works for both 32 and 64 as it only works for
+        32 at the moment.
+        :return:
+        """
+
+        file_reader = open(file, "rb")
+        content = file_reader.read()
+        binary_int = binascii.hexlify(content)
+        binary_string = binary_int[0:len(binary_int)]
+        x = 0
+        while x < len(binary_string):
+            bin_string = binary_string[x:x + 8]
+
+            storage = (hex(int(bin_string, 16)))
+            storage1 = (bin(int(storage, 16)))
+            storage1 = storage1[2:len(storage1)]
+            if (len(storage1) == 31 or len(storage1) == 63):
+                    storage1 = "0" + storage1
+
+            Convert().ibm_to_float(storage1)
+            x+= 8
+
+    def read_file_and_call_conversion_double(self,file):
+        """
+        reads in the file (this needs to be changed so it takes a file and a type
+        Single or double).
+        the way we read in removes the leading zero as it thinks its padding, so
+        i append that if length 31 or 63
+        need to adjust this method so it works for both 32 and 64 as it only works for
+        32 at the moment.
+        :return:
+        """
+
+        file_reader = open(file, "rb")
+        content = file_reader.read()
+        binary_int = binascii.hexlify(content)
+        binary_string = binary_int[0:len(binary_int)]
+        x = 0
+        while x < len(binary_string):
+            bin_string = binary_string[x:x + 16]
+
+            storage = (hex(int(bin_string, 16)))
+            storage1 = (bin(int(storage, 16)))
+            storage1 = storage1[2:len(storage1)]
+            if (len(storage1) == 31 or len(storage1) == 63):
+                storage1 = "0" + storage1
+
+            Convert().ibm_to_float(storage1)
+            x += 16
+
+
+    def get_input_type(self):
+        """
+        gets the persiscion type
+        :return: string of what percsision
+        """
+        val = input("Enter percision (double or Single): ")
+        return val
+
+    def get_file(self):
+        """
+        gets the file path
+        :return: String file path
+        """
+        val = input("Enter file to read from")
+        return val
+
+
+    def read_file(self, percision, file):
+        """
+        reads the file with the specified percsion
+        :param self:
+        :param percision: double or single
+        :param file: the file to read from
+        :return: nothing
+        """
+
+        if(percision == "single"):
+
+            Convert().read_file_and_call_conversion_single(file)
+
+        elif(percision == "double"):
+            print("in double")
+            Convert().read_file_and_call_conversion_double(file)
+
+        else:
+            print("percision not recoginised")
+
+    def input_sequence(self):
+        """
+        called to run the program in the correct sequence
+        :return: nothing
+        """
+        file = Convert().get_file()
+        percision = Convert().get_input_type()
+        Convert().read_file(percision,file)
+
+
+
+
+#print(len("1000000000000000000000000000000000000000000000000000000000000000"))
+#binary_string = binascii.hexlify("804E28E2290F0000")
+#print(binary_string)
+Convert().read_file_and_call_conversion_single("../test/test_files/testIBMSingle.bin")
+#Convert().input_sequence()
+#Convert().read_file_and_call_conversion()
+
+
+
