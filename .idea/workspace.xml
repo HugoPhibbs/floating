@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b40bc1fb-4a51-45cb-8bb2-ee453654a8cb" name="Changes" comment="combined both pieces of work together into the one file. added documentation to mine.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/convert.py" afterDir="false" />
-    </list>
+    <list default="true" id="b40bc1fb-4a51-45cb-8bb2-ee453654a8cb" name="Changes" comment="reads in each hex number correctly now" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,7 +171,7 @@
       <workItem from="1652844384803" duration="1499000" />
       <workItem from="1652912201815" duration="5039000" />
       <workItem from="1653002861193" duration="5266000" />
-      <workItem from="1653024622543" duration="5225000" />
+      <workItem from="1653024622543" duration="5251000" />
     </task>
     <task id="LOCAL-00001" summary="init commmit">
       <created>1652663534595</created>
@@ -211,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652935304475</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="reads in each hex number correctly now">
+      <created>1653029998050</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653029998051</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +238,8 @@
     <MESSAGE value="starting changes&#10;&#10;float to IEEE implemented, need to add tests, and need to be able to handle binary input" />
     <MESSAGE value="idea files" />
     <MESSAGE value="combined both pieces of work together into the one file. added documentation to mine." />
-    <option name="LAST_COMMIT_MESSAGE" value="combined both pieces of work together into the one file. added documentation to mine." />
+    <MESSAGE value="reads in each hex number correctly now" />
+    <option name="LAST_COMMIT_MESSAGE" value="reads in each hex number correctly now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

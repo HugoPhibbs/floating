@@ -217,7 +217,7 @@ class Convert:
             Convert().read_file_and_call_conversion_single(file)
 
         elif(percision == "double"):
-            print("in double")
+
             Convert().read_file_and_call_conversion_double(file)
 
         else:
