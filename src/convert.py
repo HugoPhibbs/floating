@@ -5,11 +5,8 @@ import binascii
 class Convert:
     """
     Main logical class of the Project, does conversion from IBM floating points to IEEE floating points
-
-    Author: Ben Forde and Hugo Phibbs
     """
-    valid_formats = ["double", "single"]
-    invalid_format_msg = "Please enter a format that is either 'single' or 'double'"
+
 
     # Main Methods
 
@@ -20,12 +17,18 @@ class Convert:
         :return: None
         """
         input_file_name = self.get_input_file_name()
-        input_format = self.get_input_format()
-        output_file_name = self.get_output_file_name()
-        float_list = self.convert_ibm_file(input_file_name, input_format)
-        self.write_to_ieee_file(float_list, output_file_name)
 
-    def convert_ibm_file(self, file_name: str, input_format: str) -> list[float]:
+        output_file_name = self.get_output_file_name()
+        float_list = self.convert_ibm_file(input_file_name)
+        ieee_list = []
+        for float in float_list:
+            ieee_list.append(self.float_to_ieee(float))
+
+
+
+        self.write_to_ieee_file(ieee_list, output_file_name)
+
+    def convert_ibm_file(self, file_name: str):
         """
         Converts a file containing IBM binary float to a list of IEEE floats
 
@@ -33,13 +36,13 @@ class Convert:
         :param input_format: str format of inputted ibm file content
         :return: list containing IBM floats converted into python floats
         """
-        assert input_format in self.valid_formats
+
         byte_content = self.read_bin_file(file_name)
-        return self.ibm_bytes_to_float_list(byte_content, input_format)
+        return self.ibm_bytes_to_float_list(byte_content)
 
     # Converting ibm to float
 
-    def ibm_bytes_to_float_list(self, byte_content: bytes, input_format: str) -> list[float]:
+    def ibm_bytes_to_float_list(self, byte_content: bytes) -> list:
         """
         Converts IBM byte content of a specified format and converts the file into a list
         of python floats
@@ -53,8 +56,8 @@ class Convert:
         :param input_format: string for input format of the ibm byte_content
         :return: list of floats as described
         """
-        assert input_format in self.valid_formats
-        increment: int = 16 if input_format == "double" else 8
+
+        increment: int = 8
 
         binary_int = binascii.hexlify(byte_content)
         binary_string = binary_int[0:len(binary_int)]
@@ -68,7 +71,7 @@ class Convert:
             storage = (hex(int(bin_string, 16)))
             storage1 = (bin(int(storage, 16)))
             storage1 = storage1[2:len(storage1)]
-            if (len(storage1) == 31 or len(storage1) == 63):
+            if (len(storage1) == 31):
                 storage1 = "0" + storage1
 
             this_float = self.ibm_to_float(storage1)
@@ -86,7 +89,7 @@ class Convert:
 
         # Getting sign of binary
         sign_bit = ibm_binary[0]
-        sign = 1 if sign_bit == "1" else 1
+        sign = 1 if sign_bit == "1" else -1
 
         # convert exponent binary to decimal value
         exponent_binary = ibm_binary[1:8]
@@ -128,7 +131,7 @@ class Convert:
 
     # Converting float to IEEE
 
-    def float_to_ieee(self, num: float, output_format: str) -> str:
+    def float_to_ieee(self, num: float) -> str:
         """
         Converts a float number into an IEEE single precision binary string
 
@@ -138,16 +141,15 @@ class Convert:
         :param output_format: string for format of ieee float to use, either "single or double"
         :return: string for IEEE binary as described
         """
-        assert output_format in self.valid_formats
+
         bits, = struct.unpack('!I', struct.pack('!f', num))
-        if output_format == "single":
-            return "{:032b}".format(bits)
-        else:
-            return "{:064b}".format(bits)
+
+        return "{:032b}".format(bits)
+
 
     # Handling input and output
 
-    def write_to_ieee_file(self, float_list: list[float], output_file_name: str) -> None:
+    def write_to_ieee_file(self, float_list: list, output_file_name: str) -> None:
         """
         Writes a list of converted IBM floats to a file containing IEEE floats
 
@@ -155,11 +157,19 @@ class Convert:
         :param output_file_name: str for name of file to be written to
         :return: None
         """
+
         ieee_binary_list = []
         for float in float_list:
             ieee_binary_list.append(float)
         ## TODO write to file
-        pass
+
+        f = open(output_file_name, "wb")
+        for element in ieee_binary_list:
+            f.write(element.encode('utf-8'))
+
+        f.close
+        print("See newly created file.")
+
 
     def get_input_file_name(self) -> str:
         """
@@ -186,43 +196,12 @@ class Convert:
         """
         return open(file_name, "rb").read()
 
-    def get_output_format(self) -> str:
-        """
-        Gets the output format (single or double) of IEEE that a user would like ibm floats converted to
-
-        :return: str
-        """
-        return self.get_format("Please enter the output format of IEEE that you would like (either 'single' or "
-                               "'double'):")
-
-    def get_input_format(self) -> str:
-        """
-        Gets the input format (single or double) that a user would like the IBM floats to be converted to
-
-        :return: str
-        """
-        return self.get_format("Please enter the input format of IBM 360 that you would like (either 'single' or "
-                               "'double'):")
-
-    def get_format(self, prompt_msg: str) -> str:
-        """
-        Gets and returns a format that a user would like input or output interpreted as
-
-        General method to reduce code re-usage
-
-        :param: prompt_msg, str for a prompt message asking user to enter a format
-        :return: str for an inputted format from a user, is valid
-        """
-        float_format = input(prompt_msg)
-        while float_format not in self.valid_formats:
-            print(self.invalid_format_msg)
-            float_format = input(prompt_msg)
-        return float_format
 
 
 # print(len("1000000000000000000000000000000000000000000000000000000000000000"))
 # binary_string = binascii.hexlify("804E28E2290F0000")
 # print(binary_string)
-Convert().read_file_and_call_conversion_single("../test/test_files/testIBMSingle.bin")
+# Convert().read_file_and_call_conversion_single("../test/test_files/testIBMSingle(1).bin")
 # Convert().input_sequence()
 # Convert().read_file_and_call_conversion()
+Convert().start()
