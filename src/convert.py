@@ -141,11 +141,8 @@ class Convert:
         :param output_format: string for format of ieee float to use, either "single or double"
         :return: string for IEEE binary as described
         """
-
         bits, = struct.unpack('!I', struct.pack('!f', num))
-
         return "{:032b}".format(bits)
-
 
     # Handling input and output
 
@@ -161,15 +158,12 @@ class Convert:
         ieee_binary_list = []
         for float in float_list:
             ieee_binary_list.append(float)
-        ## TODO write to file
-
         f = open(output_file_name, "wb")
         for element in ieee_binary_list:
             f.write(element.encode('utf-8'))
 
         f.close
         print("See newly created file.")
-
 
     def get_input_file_name(self) -> str:
         """
