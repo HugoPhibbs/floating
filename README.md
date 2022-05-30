@@ -12,7 +12,7 @@
 ## Running the program
 - To run the program enter: from within the src folder run the command "python3 convert.py" you will then be prompted to enter a file to read from. 
 - after this enter in a file to write to with the suffix ".bin". 
-- the converted floats will then be inside the newly created file. 
+- the conveted floats will then be inside the newly created file. 
 
 
 ## Testing the program
