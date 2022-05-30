@@ -141,7 +141,6 @@ class Convert:
         :param output_format: string for format of ieee float to use, either "single or double"
         :return: string for IEEE binary as described
         """
-        print(num)
         bits, = struct.unpack('!I', struct.pack('!f', num))
         return "{:032b}".format(bits)
 
