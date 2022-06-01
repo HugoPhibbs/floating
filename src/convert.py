@@ -23,9 +23,6 @@ class Convert:
         ieee_list = []
         for float in float_list:
             ieee_list.append(self.float_to_ieee(float))
-
-
-
         self.write_to_ieee_file(ieee_list, output_file_name)
 
     def convert_ibm_file(self, file_name: str):
@@ -89,7 +86,7 @@ class Convert:
 
         # Getting sign of binary
         sign_bit = ibm_binary[0]
-        sign = 1 if sign_bit == "1" else -1
+        sign = -1 if sign_bit == "1" else +1
 
         # convert exponent binary to decimal value
         exponent_binary = ibm_binary[1:8]
@@ -131,18 +128,17 @@ class Convert:
 
     # Converting float to IEEE
 
-    def float_to_ieee(self, num: float) -> str:
+    def float_to_ieee(self, num: float):
         """
         Converts a float number into an IEEE single precision binary string
 
-        code taken from https://stackoverflow.com/questions/51179116/ieee-754-python
+        code taken from https://stackoverflow.com/questions/23624212/how-to-convert-a-float-into-hex
 
         :param num: float for float to be converted
         :param output_format: string for format of ieee float to use, either "single or double"
-        :return: string for IEEE binary as described
+        :return:
         """
-        bits, = struct.unpack('!I', struct.pack('!f', num))
-        return "{:032b}".format(bits)
+        return hex(struct.unpack('<I', struct.pack('<f', num))[0])
 
     # Handling input and output
 
@@ -154,14 +150,13 @@ class Convert:
         :param output_file_name: str for name of file to be written to
         :return: None
         """
-
         ieee_binary_list = []
         for float in float_list:
+            print(float)
             ieee_binary_list.append(float)
         f = open(output_file_name, "wb")
         for element in ieee_binary_list:
             f.write(element.encode('utf-8'))
-
         f.close
         print("See newly created file.")
 
