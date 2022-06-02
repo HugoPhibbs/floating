@@ -17,10 +17,13 @@ python3 convert.py
 
 
 ## Testing the program
-- We tested our program using the test file given to us in the provided documents.
+- We tested our program using the test files given to us. Among with other manual tests.
 
 ## Python version
 - Our program has been developed with Python 3.
 
+## External libraries
+- ctypes for writing python C types (this tip was kindly provided by Stefanie, danke!)
+- binascii was used for converting IBM floats to python ones
 
 
