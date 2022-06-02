@@ -1,7 +1,5 @@
 import ctypes
-import struct
 import binascii
-
 
 class Convert:
     """
