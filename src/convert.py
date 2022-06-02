@@ -1,3 +1,4 @@
+import ctypes
 import struct
 import binascii
 
@@ -12,18 +13,25 @@ class Convert:
 
     def start(self) -> None:
         """
-        Starts the convert program. Main method for this application
+        Starts the convert program
 
         :return: None
         """
         input_file_name = self.get_input_file_name()
-
         output_file_name = self.get_output_file_name()
+        self.convert(input_file_name, output_file_name)
+
+    def convert(self, input_file_name: str, output_file_name : str) -> None:
+        """
+        Converts an IBM bin file containing floats to IEEE floats then writes these to another file
+
+        :param input_file_name: str
+        :param output_file_name: str
+        :return: None
+        """
         float_list = self.convert_ibm_file(input_file_name)
-        ieee_list = []
-        for float in float_list:
-            ieee_list.append(self.float_to_ieee(float))
-        self.write_to_ieee_file(ieee_list, output_file_name)
+        self.write_to_ieee_file(float_list, output_file_name)
+
 
     def convert_ibm_file(self, file_name: str):
         """
@@ -126,38 +134,20 @@ class Convert:
             decimal += int(binary[i]) * 2 ** i
         return decimal
 
-    # Converting float to IEEE
-
-    def float_to_ieee(self, num: float):
-        """
-        Converts a float number into an IEEE single precision binary string
-
-        code taken from https://stackoverflow.com/questions/23624212/how-to-convert-a-float-into-hex
-
-        :param num: float for float to be converted
-        :param output_format: string for format of ieee float to use, either "single or double"
-        :return:
-        """
-        return hex(struct.unpack('<I', struct.pack('<f', num))[0])
-
     # Handling input and output
 
     def write_to_ieee_file(self, float_list: list, output_file_name: str) -> None:
         """
         Writes a list of converted IBM floats to a file containing IEEE floats
 
-        :param float_list: list of floats to be written to IEEE
+        :param float_list: list of floats to be written
         :param output_file_name: str for name of file to be written to
         :return: None
         """
-        ieee_binary_list = []
-        for float in float_list:
-            print(float)
-            ieee_binary_list.append(float)
         f = open(output_file_name, "wb")
-        for element in ieee_binary_list:
-            f.write(element.encode('utf-8'))
-        f.close
+        for float in float_list:
+            f.write(ctypes.c_float(float))
+        f.close()
         print("See newly created file.")
 
     def get_input_file_name(self) -> str:
@@ -185,12 +175,4 @@ class Convert:
         """
         return open(file_name, "rb").read()
 
-
-
-# print(len("1000000000000000000000000000000000000000000000000000000000000000"))
-# binary_string = binascii.hexlify("804E28E2290F0000")
-# print(binary_string)
-# Convert().read_file_and_call_conversion_single("../test/test_files/testIBMSingle(1).bin")
-# Convert().input_sequence()
-# Convert().read_file_and_call_conversion()
 Convert().start()
