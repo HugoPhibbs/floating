@@ -66,14 +66,24 @@ class Convert:
             bin_string = binary_string[x:x + increment]
 
             storage = (hex(int(bin_string, 16)))
-            storage1 = (bin(int(storage, 16)))
-            storage1 = storage1[2:len(storage1)]
-            if (len(storage1) == 31):
-                storage1 = "0" + storage1
 
-            this_float = self.ibm_to_float(storage1)
-            float_list.append(this_float)
-            x += increment
+            if(storage == "0x00000000"):
+                this_float = self.ibm_to_float("00000000000000000000000000000000")
+                float_list.append(this_float)
+                x += increment
+            elif storage == "0x80000000":
+                this_float = self.ibm_to_float("10000000000000000000000000000000")
+                float_list.append(this_float)
+                x += increment
+            else:
+                storage1 = (bin(int(storage, 16)))
+                storage1 = storage1[2:len(storage1)]
+                if (len(storage1) == 31):
+                    storage1 = "0" + storage1
+
+                this_float = self.ibm_to_float(storage1)
+                float_list.append(this_float)
+                x += increment
         return float_list
 
     def ibm_to_float(self, ibm_binary: str) -> float:
